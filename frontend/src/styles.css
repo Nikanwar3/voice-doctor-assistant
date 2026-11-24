@@ -1,0 +1,519 @@
+:root {
+  --ink: #16211f;
+  --ink-soft: #4b5a57;
+  --paper: #f6f4ef;
+  --card: #ffffff;
+  --border: #e4e0d6;
+  --teal: #0f3d3e;
+  --teal-soft: #e4efec;
+  --mint: #4fb48b;
+  --mint-bright: #6ee7b7;
+  --amber: #c98a2b;
+  --danger: #c4493b;
+  --shadow: 0 1px 2px rgba(22, 33, 31, 0.04), 0 8px 24px rgba(22, 33, 31, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Shell & header ---------- */
+
+.app-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.65rem;
+  letter-spacing: -0.01em;
+  color: var(--teal);
+}
+
+.app-header p {
+  margin: 0.2rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+.try-call-btn {
+  background: var(--teal);
+  color: #fdfdfb;
+  border: none;
+  padding: 0.85rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.try-call-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(22, 33, 31, 0.08), 0 14px 28px rgba(22, 33, 31, 0.12);
+}
+
+/* ---------- Dashboard grid ---------- */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.1rem;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--teal);
+}
+
+.panel-subtitle {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.empty-state {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+.empty-state.subtle {
+  font-size: 0.84rem;
+  padding: 0.3rem 0 0;
+}
+
+/* ---------- Doctor cards ---------- */
+
+.doctor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.doctor-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+
+.doctor-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+
+.doctor-avatar {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.doctor-card-head h3 {
+  margin: 0 0 0.15rem;
+  font-size: 0.98rem;
+}
+
+.specialty-badge {
+  display: inline-block;
+  background: var(--teal-soft);
+  color: var(--teal);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+
+.slot-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.slot-group {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.slot-date {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  min-width: 70px;
+}
+
+.slot-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.slot-chip {
+  font-size: 0.78rem;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  color: var(--ink);
+}
+
+/* ---------- Appointments table ---------- */
+
+.appointment-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1.3fr 0.8fr;
+  gap: 0.5rem;
+  padding: 0.65rem 0.3rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.86rem;
+  align-items: center;
+  transition: background-color 0.4s ease;
+}
+
+.appointment-row-head {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border);
+}
+
+.appointment-row:last-child {
+  border-bottom: none;
+}
+
+.specialty-inline {
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+}
+
+.row-cancelled {
+  opacity: 0.55;
+}
+
+.row-flash {
+  background-color: #fff3cf;
+}
+
+.status-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.status-booked {
+  background: var(--teal-soft);
+  color: var(--mint);
+}
+
+.status-cancelled {
+  background: #f3ece7;
+  color: var(--danger);
+}
+
+/* ---------- Phone call overlay ---------- */
+
+.phone-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 16, 15, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  animation: fade-in 0.2s ease;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.phone-card {
+  position: relative;
+  width: 360px;
+  max-width: 92vw;
+  height: 640px;
+  max-height: 90vh;
+  background: linear-gradient(165deg, #10302f 0%, #0a1b1b 70%, #081615 100%);
+  border-radius: 32px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  color: #f3f7f5;
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.3rem 1.3rem;
+  overflow: hidden;
+}
+
+.phone-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.phone-header {
+  text-align: center;
+  margin-bottom: 0.9rem;
+}
+
+.phone-avatar {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 0.7rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--mint-bright), var(--teal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #07201f;
+}
+
+.phone-avatar.pulsing {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(110, 231, 183, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(110, 231, 183, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(110, 231, 183, 0);
+  }
+}
+
+.phone-header h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1.05rem;
+}
+
+.phone-status {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(243, 247, 245, 0.65);
+}
+
+.phone-status-connected {
+  color: var(--mint-bright);
+}
+
+.phone-timer {
+  font-variant-numeric: tabular-nums;
+}
+
+.waveform-canvas {
+  width: 100%;
+  height: 48px;
+  margin: 0.4rem 0 0.8rem;
+}
+
+.phone-transcript {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.2rem 0.1rem;
+  scrollbar-width: thin;
+}
+
+.transcript-placeholder {
+  text-align: center;
+  color: rgba(243, 247, 245, 0.45);
+  font-size: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+.transcript-bubble {
+  max-width: 82%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 14px;
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.bubble-user {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom-right-radius: 4px;
+}
+
+.bubble-bot {
+  align-self: flex-start;
+  background: rgba(110, 231, 183, 0.16);
+  border: 1px solid rgba(110, 231, 183, 0.25);
+  border-bottom-left-radius: 4px;
+}
+
+.transcript-tool-chip {
+  align-self: center;
+  font-size: 0.74rem;
+  font-style: italic;
+  color: rgba(243, 247, 245, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.confirmation-card {
+  background: rgba(110, 231, 183, 0.14);
+  border: 1px solid rgba(110, 231, 183, 0.35);
+  border-radius: 12px;
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-size: 0.82rem;
+  animation: slide-up 0.25s ease;
+}
+
+.confirmation-card strong {
+  color: var(--mint-bright);
+  font-size: 0.85rem;
+}
+
+.confirmation-cancelled {
+  background: rgba(196, 73, 59, 0.14);
+  border-color: rgba(196, 73, 59, 0.35);
+}
+
+.confirmation-cancelled strong {
+  color: #e8a79c;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.phone-controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.control-btn {
+  flex: 1;
+  max-width: 150px;
+  padding: 0.65rem 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.control-btn-active {
+  background: rgba(110, 231, 183, 0.25);
+  border-color: rgba(110, 231, 183, 0.45);
+}
+
+.control-btn-end {
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+@media (max-width: 420px) {
+  .phone-card {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
