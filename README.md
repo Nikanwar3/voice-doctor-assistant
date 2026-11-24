@@ -4,9 +4,6 @@ A voice AI agent that checks doctor availability, books appointments, and
 cancels appointments over a live, phone-style call in the browser — plus a
 dashboard to place the call and watch it happen in real time.
 
-Built for the SDE Intern (Round 1) assignment: *Voice AI Doctor Appointment
-Assistant*.
-
 ## Contents
 
 - [Features](#features)
@@ -44,7 +41,7 @@ Assistant*.
 | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Voice pipeline | [Pipecat](https://github.com/pipecat-ai/pipecat) (Python)                                                                                         |
 | STT / TTS      | ElevenLabs                                                                                                                                         |
-| LLM            | Google Gemini via `GoogleLLMService` — no model string is hardcoded, so it always runs whatever Gemini currently treats as its default free-tier flash model |
+| LLM            | Google Gemini via Pipecat's `GoogleLLMService`|
 | Transport      | Pipecat's SmallWebRTC (peer-to-peer, no third-party calling account needed)                                                                       |
 | VAD            | Silero                                                                                                                                             |
 | Frontend       | React + Vite, official `@pipecat-ai/client-js` / `@pipecat-ai/client-react` SDKs                                                                  |
@@ -66,8 +63,7 @@ history — `server.py` spawns `run_bot()` as a background task per WebRTC
 offer, so nothing from one caller's conversation leaks into another's. The
 dashboard and the voice pipeline are two views onto the same SQLite file,
 which is what makes a booking made by voice show up on the dashboard a moment
-later. The dashboard refreshes over plain polling rather than a push channel —
-a deliberate scope call for a small, three-minute demo, not an oversight.
+later. The dashboard uses periodic polling to keep appointment and doctor availability data synchronized.
 
 ## Setup
 
@@ -165,9 +161,6 @@ frontend/
 > anything. The React dashboard polls the same database over a small REST
 > API, which is how a booking made mid-call shows up live in the appointments
 > list.
-
-Feel free to tighten this further in your own words before submitting — it's
-meant as an honest starting draft, not a polished essay.
 
 ## Notes / things worth knowing before you're asked about them
 
