@@ -52,7 +52,7 @@ dashboard to place the call and watch it happen in real time.
 ```
 Browser (React dashboard)
  ├─ REST polling ───────────────► FastAPI  /api/doctors, /api/appointments  ───► SQLite
- └─ WebRTC call ────────────────► FastAPI  /api/offer  ───► one Pipecat pipeline per call:
+ └─ WebRTC call ────────────────► FastAPI  /api/offer  ───► one Pipecat pipeline per call;
                                     caller audio → ElevenLabs STT → Gemini LLM (+ tools)
                                     → ElevenLabs TTS → caller audio
                                     Gemini's tool calls read/write the same SQLite file.
